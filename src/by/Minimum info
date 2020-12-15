@@ -1,0 +1,29 @@
+    * Получение списока всех кодировок
+    SortedMap<String, Charset> charsets = Charset.availableCharsets();
+
+    * Получение текущей активной кодировки
+    Charset charset = Charset.defaultCharset();
+
+    * Преобразование строку в определенную кодировку (есть 3 способа) На примере: String string = "Good day";
+
+    (1 способ)
+    byte[] bytes_1 = string.getBytes(); // преобразование в нашу активную кодировку (по умолч. UTF-8)
+
+    (2 способ)
+    Charset koi8 = Charset.forName("KOI8-R"); // берем кодировку.
+    byte[] bytes_2 = string.getBytes(koi8); // и записываем по этой кодировке.
+
+    (3 способ)
+    byte[] bytes_3 = string.getBytes("Windows-1251"); //записываем по имени кодировки
+
+    * Преобразование нобора байт в строку (есть 3 способа)
+
+    (1 способ)
+    String string_1 = new String(bytes_1); // преобразование по default кодировке (UTF-8)
+
+    (2 способ)
+    Charset koi8r = Charset.forName("KOI8-R"); // берем кодировку.
+    String string_2 = new String(bytes_2,koi8r); // и преобразую по этой кодировке
+
+    (3 способ)
+    String string_3 = new String(bytes_3,"Windows-1251"); // преобразуем по имени кодировки
